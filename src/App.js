@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import TodoForm from './components/Todos/TodoForm'
+import TodoList from './components/Todos/TodoList'
+import TodosActions from './components/Todos/TodosActions'
 
 function App() {
+  const [todos, setTodos] = useState([])
+
+  const createTodo = (newTodo) => {
+    setTodos([...todos, newTodo])
+  }
+  const removeTodo = (todo) => {
+    setTodos(todos.filter((t) => t.id !== todo.id))
+  }
+
+  const toggleTodoHandler = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        return todo.id === id
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : { ...todo }
+      })
+    )
+  }
+
+  const resetTodosHandler = () => {
+    setTodos([])
+  }
+
+  const deleteCompletedTodosHandler = () => {
+    setTodos(todos.filter((todo) => !todo.isCompleted))
+  }
+
+  const completedTodosCount = todos.filter((todo) => todo.isCompleted).length
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo App</h1>
+      <TodoForm createTodo={createTodo} />
+      {!!todos.length && (
+        <TodosActions
+          completedTodosExist={!!completedTodosCount}
+          resetTodos={resetTodosHandler}
+          deleteCompletedTodos={deleteCompletedTodosHandler}
+        />
+      )}
+      <TodoList
+        todo={todos}
+        remove={removeTodo}
+        toggleTodo={toggleTodoHandler}
+      />
+      {!!completedTodosCount && (
+        <h2>{`You have completed ${completedTodosCount} ${
+          completedTodosCount > 1 ? 'todos' : 'todo'
+        }`}</h2>
+      )}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
