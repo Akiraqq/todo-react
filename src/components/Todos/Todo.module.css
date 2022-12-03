@@ -8,17 +8,22 @@
   border: 2px solid #555;
   color: #112d49;
   background-color: #fbfef9;
+  overflow: grow;
 }
 
 .todoText {
   width: 100%;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .todoIcon {
   font-size: 1.8rem;
   margin-right: 10px;
   color: teal;
+  flex: 0 0 auto;
 }
 
 .completedTodo {
@@ -40,6 +45,7 @@
   padding: 0 7px;
   font-size: 1.8rem;
   transition: transform 0.3s;
+  flex: 0 0 auto;
 }
 
 .checkIcon:hover,
