@@ -10,18 +10,18 @@
 
 .todoFormContainer input {
   width: 75%;
-  height: 30px;
-  font-size: 1.3rem;
+  height: 25px;
+  font-size: 1rem;
   margin-left: 5px;
 }
 
 .todoFormContainer button {
-  margin-left: 20px;
+  margin-left: 10px;
   margin-right: 5px;
-  height: 50px;
+  height: 44px;
   cursor: pointer;
   background-color: beige;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .todoFormContainer button:hover {
