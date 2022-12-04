@@ -61,3 +61,62 @@
 .deleteIcon:hover {
   color: red;
 }
+
+.modal {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal__content {
+  overflow: auto;
+  text-align: left;
+  word-wrap: break-word;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #fbfef9;
+  height: 222px;
+  width: 400px;
+  transform: scale(0.5);
+  transition: 0.4s all;
+}
+.modal__content.active {
+  transform: scale(1);
+}
+
+.modal__content::-webkit-scrollbar-track {
+  border-radius: 15px;
+  margin: 14px;
+}
+
+.modal__content::-webkit-scrollbar {
+  width: 11px;
+  border-radius: 15px;
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+  background-color: teal;
+  border: 2px solid #6f2323 transparent;
+  border-radius: 15px;
+}
+
+@media (max-device-width: 480px) {
+  .modal__content {
+    margin-left: 24px;
+    margin-right: 24px;
+    position: relative;
+    top: -60px;
+  }
+}
